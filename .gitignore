@@ -1,5 +1,8 @@
 ### node etc ###
 
+# Config
+client/env/config.js
+
 # Logs
 logs
 *.log
