@@ -64,6 +64,7 @@ $(function() {
         success: function(data) {
           console.log('chatterbox: Messages fetched');
           // Don't bother if we have nothing to work with
+          console.log(data);
           if (!data.results || !data.results.length) { return; }
 
           // Get the last message
