@@ -5,8 +5,8 @@ USE chat;
 CREATE TABLE messages (
   ID int AUTO_INCREMENT PRIMARY KEY,
   userID int,
-  messageBody varchar(142),
-  room varchar(64),
+  text varchar(142),
+  roomname varchar(64),
   createdAt char(24) NOT NULL
 );
 
@@ -14,7 +14,7 @@ CREATE TABLE messages (
 
 CREATE TABLE users (
   ID int AUTO_INCREMENT PRIMARY KEY,
-  name varchar(64)
+  username varchar(64)
 );
 
 
