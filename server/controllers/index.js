@@ -11,7 +11,16 @@ module.exports = {
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      
+      var data = req.body;
+      console.log('Data collected:', data);
+      data.createdAt = new Date().toISOString();
+      models.messages.post(data, function(err) {
+        if (err) {
+          utils.sendResponse(res, "internal server error", 500);
+        } else {
+          utils.sendResponse(res, null, 201);
+        }
+      });
     } // a function which handles posting a message to the database
   },
 

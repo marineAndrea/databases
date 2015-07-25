@@ -12,12 +12,12 @@ exports.sendResponse = function(response, data, statusCode){
   response.end(JSON.stringify(data));
 };
 
-exports.collectData = function(request, callback){
-  var data = "";
-  request.on('data', function(chunk){
-    data += chunk;
-  });
-  request.on('end', function(){
-    callback(JSON.parse(data));
-  });
-};
+// exports.collectData = function(request, callback){
+//   var data = "";
+//   request.on('data', function(chunk){
+//     data += chunk;
+//   });
+//   request.on('end', function(){
+//     callback(JSON.parse(data));
+//   });
+// };
