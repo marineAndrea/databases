@@ -16,11 +16,12 @@ describe("Persistent Node Chat Server", function() {
     });
     dbConnection.connect();
 
-       var tablename = "messages"; // TODO: fill this out
 
     /* Empty the db table before each test so that multiple tests
      * (or repeated runs of the tests) won't screw each other up: */
-    dbConnection.query("truncate " + tablename, done);
+    dbConnection.query("truncate " + "messages", function() {
+      dbConnection.query("truncate " + "users", done);
+    });
   });
 
   afterEach(function() {
@@ -47,7 +48,7 @@ describe("Persistent Node Chat Server", function() {
 
         // TODO: You might have to change this test to get all the data from
         // your message table, since this is schema-dependent.
-        var queryString = "SELECT messages.ID, users.name, messages.text, messages.roomname, messages.createdAt FROM messages, users WHERE messages.userID = users.ID;";
+        var queryString = "SELECT messages.ID, users.username, messages.text, messages.roomname, messages.createdAt FROM messages, users WHERE messages.userID = users.ID;";
         var queryArgs = [];
 
         dbConnection.query(queryString, queryArgs, function(err, results) {

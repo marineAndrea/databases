@@ -7,12 +7,11 @@ module.exports = {
   messages: {
     get: function (req, res) {
       models.messages.get(function(results) {
-        utils.sendResponse(res, {results: results});
+        utils.sendResponse(res, {results: results}); // client is expecting an object of this type
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       var data = req.body;
-      console.log('Data collected:', data);
       data.createdAt = new Date().toISOString();
       models.messages.post(data, function(err) {
         if (err) {
@@ -26,8 +25,21 @@ module.exports = {
 
   users: {
     // Ditto as above
-    get: function (req, res) {},
-    post: function (req, res) {}
+    get: function (req, res) {
+      models.users.get(function(results) {
+        utils.sendResponse(res, results);
+      });
+    },
+    post: function (req, res) {
+      var data = req.body;
+      models.users.post(data, function(err) {
+        if (err) {
+          utils.sendResponse(res, "internal server error", 500);
+        } else {
+          utils.sendResponse(res, null, 201);
+        }
+      });
+    }
   }
 };
 
