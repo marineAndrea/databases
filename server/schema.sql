@@ -7,7 +7,8 @@ CREATE TABLE messages (
   userID int,
   text varchar(142),
   roomname varchar(64),
-  createdAt char(24) NOT NULL
+  createdAt char(24) NOT NULL,
+  updatedAt char(24)
 );
 
 /* Create other tables and define schemas for them here! */
